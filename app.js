@@ -1,5 +1,5 @@
 /* STOCKLY — configure API_URL depois de publicar o Apps Script. */
-const API_URL = 'COLE_AQUI_A_URL_DO_WEB_APP';
+const API_URL = 'https://script.google.com/macros/s/AKfycbwYjm1Aepfdf-yMV2A5AcVK0F_NdLTVo0altcjlyT3VklbC4Y26vGbid82L9tYwyYKF/exec';
 const $ = (s) => document.querySelector(s);
 let products = [], movements = [], busy = false;
 const money = n => Number(n||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
