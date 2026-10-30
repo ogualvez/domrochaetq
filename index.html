@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101512"><meta name="description" content="Gerenciador de estoque compartilhado">
+  <link rel="manifest" href="manifest.json"><link rel="stylesheet" href="styles.css">
+  <title>Estoque — Controle simples</title>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#inicio"><span class="brand-mark">S</span><span><b>STOCK<span>LY</span></b><small>CONTROLE INTELIGENTE</small></span></a>
+      <div class="side-label">MENU PRINCIPAL</div>
+      <nav class="side-nav">
+        <button class="nav-item active" data-page="inicio"><i>⌂</i> Visão geral</button>
+        <button class="nav-item" data-page="produtos"><i>▦</i> Produtos</button>
+        <button class="nav-item" data-page="movimentacoes"><i>⇄</i> Movimentações</button>
+        <button class="nav-item" data-page="historico"><i>◷</i> Histórico</button>
+      </nav>
+      <div class="sidebar-bottom"><span class="online-dot"></span> Estoque compartilhado <small>Sincronização pela nuvem</small></div>
+    </aside>
+    <main class="main-area">
+      <header class="topbar"><div><div class="eyebrow" id="eyebrow">PAINEL DE CONTROLE</div><h1 id="page-title">Visão geral</h1></div><div class="top-actions"><span class="sync-status" id="sync-status"><span class="online-dot"></span> <span>Conecte sua planilha</span></span><button class="avatar" title="Perfil">G</button></div></header>
+      <section class="page active" id="page-inicio">
+        <div class="welcome-row"><div><p class="muted">SEU ESTOQUE, SOB CONTROLE.</p><h2>Bom ter você por aqui. <span>✦</span></h2><p class="muted">Acompanhe tudo em um só lugar, sem complicação.</p></div><button class="btn primary" id="quick-add">＋ Novo produto</button></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span>Produtos cadastrados</span><span class="stat-icon">▦</span></div><strong id="stat-products">—</strong><small>Itens diferentes no estoque</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Unidades em estoque</span><span class="stat-icon green">▤</span></div><strong id="stat-units">—</strong><small>Soma das quantidades atuais</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Valor estimado</span><span class="stat-icon gold">◈</span></div><strong id="stat-value">—</strong><small>Com base no custo cadastrado</small></article>
+          <article class="stat-card warning-card"><div class="stat-top"><span>Estoque baixo</span><span class="stat-icon red">!</span></div><strong id="stat-low">—</strong><small>Produtos no limite ou abaixo</small></article>
+        </div>
+        <div class="content-grid"><article class="panel"><div class="panel-heading"><div><span class="eyebrow">ATENÇÃO</span><h3>Precisam de reposição</h3></div><button class="text-btn" data-goto="produtos">Ver produtos →</button></div><div id="low-list" class="empty-state">Seus alertas aparecerão aqui.</div></article><article class="panel"><div class="panel-heading"><div><span class="eyebrow">ACOMPANHAMENTO</span><h3>Últimas movimentações</h3></div><button class="text-btn" data-goto="historico">Ver histórico →</button></div><div id="recent-list" class="empty-state">As movimentações recentes aparecerão aqui.</div></article></div>
+        <div class="tip-banner"><div class="tip-icon">✦</div><div><b>Uma dica para manter tudo organizado</b><p>Registre cada entrada e saída assim que acontecer. Assim, os dois terão sempre a mesma informação.</p></div></div>
+      </section>
+      <section class="page" id="page-produtos"><div class="section-toolbar"><div><p class="muted">CADASTRO E ORGANIZAÇÃO</p><h2>Todos os produtos</h2></div><button class="btn primary" id="add-product">＋ Cadastrar produto</button></div><div class="filters"><label class="search-box">⌕ <input id="search-products" placeholder="Buscar por nome ou categoria..."></label><select id="filter-category"><option value="">Todas as categorias</option></select></div><div class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>PRODUTO</th><th>CATEGORIA</th><th>QUANTIDADE</th><th>ESTOQUE MÍNIMO</th><th>CUSTO UNIT.</th><th>STATUS</th><th></th></tr></thead><tbody id="products-body"><tr><td colspan="7" class="empty-state">Nenhum produto cadastrado.</td></tr></tbody></table></div></div></section>
+      <section class="page" id="page-movimentacoes"><div class="section-toolbar"><div><p class="muted">ENTRADAS E SAÍDAS</p><h2>Movimentar estoque</h2><p class="muted">Atualize as quantidades em poucos segundos.</p></div></div><div class="movement-grid"><article class="movement-card in-card"><div class="movement-symbol">＋</div><span class="eyebrow">REPOSIÇÃO</span><h3>Entrada de produtos</h3><p>Registre compras, recebimentos e reposições.</p><button class="btn dark" data-move="entrada">Registrar entrada →</button></article><article class="movement-card out-card"><div class="movement-symbol">−</div><span class="eyebrow">RETIRADA</span><h3>Saída de produtos</h3><p>Registre consumo, uso ou retirada de itens.</p><button class="btn dark" data-move="saida">Registrar saída →</button></article></div><div class="panel"><div class="panel-heading"><div><span class="eyebrow">RESUMO</span><h3>Movimentações recentes</h3></div></div><div id="movement-list" class="empty-state">Nenhuma movimentação registrada.</div></div></section>
+      <section class="page" id="page-historico"><div class="section-toolbar"><div><p class="muted">RASTREABILIDADE</p><h2>Histórico completo</h2></div></div><div class="filters"><label class="search-box">⌕ <input id="search-history" placeholder="Buscar produto ou observação..."></label><select id="filter-type"><option value="">Todas as movimentações</option><option value="entrada">Entradas</option><option value="saida">Saídas</option></select></div><div class="panel"><div id="history-list" class="empty-state">Seu histórico aparecerá aqui.</div></div></section>
+      <footer>STOCKLY <span>•</span> Simples assim. Tudo no lugar.</footer>
+    </main>
+  </div>
+  <nav class="mobile-nav"><button class="active" data-page="inicio"><i>⌂</i><span>Início</span></button><button data-page="produtos"><i>▦</i><span>Produtos</span></button><button data-page="movimentacoes"><i>⇄</i><span>Movimentar</span></button><button data-page="historico"><i>◷</i><span>Histórico</span></button></nav>
+  <div class="modal-backdrop" id="modal-backdrop"><div class="modal"><div class="modal-head"><div><span class="eyebrow" id="modal-eyebrow">NOVO CADASTRO</span><h2 id="modal-title">Cadastrar produto</h2></div><button class="close-btn" id="close-modal">×</button></div><form id="product-form"><input type="hidden" id="product-id"><label>Nome do produto<input id="product-name" required maxlength="80" placeholder="Ex.: Café em pó"></label><div class="form-row"><label>Categoria<input id="product-category" maxlength="40" placeholder="Ex.: Alimentos"></label><label>Unidade<select id="product-unit"><option>un.</option><option>kg</option><option>g</option><option>L</option><option>ml</option><option>cx.</option><option>pct.</option><option>m</option></select></label></div><div class="form-row"><label>Quantidade atual<input id="product-quantity" type="number" min="0" step="0.01" required placeholder="0"></label><label>Estoque mínimo<input id="product-min" type="number" min="0" step="0.01" value="1" required></label></div><label>Custo por unidade (R$)<input id="product-cost" type="number" min="0" step="0.01" placeholder="0,00"></label><div class="modal-actions"><button type="button" class="btn ghost" id="cancel-modal">Cancelar</button><button class="btn primary" type="submit">Salvar produto</button></div></form></div></div>
+  <div class="modal-backdrop" id="move-backdrop"><div class="modal"><div class="modal-head"><div><span class="eyebrow" id="move-eyebrow">MOVIMENTAÇÃO</span><h2 id="move-title">Registrar entrada</h2></div><button class="close-btn" id="close-move">×</button></div><form id="move-form"><input type="hidden" id="move-type"><label>Produto<select id="move-product" required><option value="">Selecione um produto</option></select></label><label>Quantidade<input id="move-quantity" type="number" min="0.01" step="0.01" required placeholder="Quantidade"></label><label>Observação (opcional)<input id="move-note" maxlength="120" placeholder="Ex.: Compra no mercado"></label><div class="modal-actions"><button type="button" class="btn ghost" id="cancel-move">Cancelar</button><button class="btn primary" type="submit">Confirmar movimentação</button></div></form></div></div>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body></html>

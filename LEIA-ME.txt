@@ -1,0 +1,28 @@
+STOCKLY — GERENCIADOR DE ESTOQUE
+
+ARQUIVOS
+- index.html, styles.css, app.js: aplicativo web.
+- Code.gs: API do Google Apps Script.
+- manifest.json e sw.js: instalação como aplicativo (PWA) e cache básico.
+
+CONFIGURAR GOOGLE SHEETS
+1. Crie uma planilha Google vazia exclusiva para este estoque.
+2. Copie o ID entre /d/ e /edit na URL da planilha.
+3. Na planilha, abra Extensões > Apps Script.
+4. Apague o conteúdo inicial e cole o conteúdo de Code.gs.
+5. Troque COLE_AQUI_O_ID_DA_PLANILHA pelo ID real.
+6. Salve. No seletor de funções, escolha setup e clique em Executar. Autorize o acesso.
+7. Clique em Implantar > Nova implantação > Tipo: Aplicativo da web.
+8. Executar como: sua conta. Quem pode acessar: qualquer pessoa (necessário para o acesso simples pelo celular; proteja o link e compartilhe apenas com o casal).
+9. Clique em Implantar, autorize se solicitado e copie a URL terminada em /exec.
+10. Abra app.js e substitua COLE_AQUI_A_URL_DO_WEB_APP pela URL copiada.
+11. Publique os arquivos frontend em hospedagem HTTPS (ex.: Cloudflare Pages, Netlify ou Vercel).
+12. Abra o endereço no celular e use “Adicionar à tela inicial”. Os dois celulares usam o mesmo endereço e a mesma planilha.
+
+IMPORTANTE — SEGURANÇA E PRÓXIMA ETAPA
+Esta primeira versão usa um endpoint compartilhado sem autenticação individual. Não coloque dados sensíveis nela. A opção “qualquer pessoa” significa que quem obtiver o link da API pode tentar acessar os dados. Antes de uso real com dados privados, implemente autenticação dos dois usuários e controle de acesso. O campo de usuário no histórico pode ficar genérico dependendo da configuração Google. Também é recomendável restringir quem pode editar a planilha diretamente.
+
+OBSERVAÇÕES
+- O estoque é compartilhado: entrada/saída feita em um celular aparece no outro após sincronização (até 1 minuto; recarregar a página força nova leitura).
+- Alterações de quantidade pelo cadastro do produto existem para facilitar a carga inicial; no uso cotidiano prefira registrar entradas e saídas para preservar o histórico.
+- O custo é opcional e serve apenas para estimar o valor em estoque.
